@@ -14,9 +14,14 @@ bonus dim = foldl (*) 1 (init (sort dim))
 
 total_paper dat = sum $ map (\x -> surface x + bonus x) dat
 
+-- Part 2
+ribbon_wrap dim = sum $ smallest ++ smallest
+  where smallest = (init (sort dim))
+total_ribbon dat = sum $ map (\x -> ribbon_wrap x + (product x)) dat
 
 main = do
   args <- getArgs
   content <- readFile (args !! 0)
   let dat = parse content
   putStrLn $ "Part 1: " ++ show (total_paper dat)
+  putStrLn $ "Part 2: " ++ show (total_ribbon dat)
