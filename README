@@ -1,7 +1,7 @@
 This repository contains solutions of Advent of code (http://adventofcode.com/)
 using Haskell programming language.
 
-If you have other elegant solutions please share :-)
+If you have elegant solutions using Haskell please share :-)
 
 In a given day directory:
 $ runghc solve input.txt
