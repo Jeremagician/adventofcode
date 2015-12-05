@@ -6,8 +6,10 @@ relshift '(' = 1
 relshift ')' = -1
 relshift x = error ("Invalid char " ++ [x])
 
-
+-- Part 1
 end_lvl xs = foldl (\x y-> x + (relshift y)) 0 xs
+
+-- Part 2
 basement_index xs = findBasement 0 1 xs
   where findBasement _ _ [] = error "Santa never goes to the basement!"
         findBasement start idx (h:t) =
