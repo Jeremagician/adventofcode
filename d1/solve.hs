@@ -2,16 +2,15 @@ module Main where
 import System.Environment
 import Data.List
 
-relshift :: Char -> Int
-relshift '(' = 1
-relshift ')' = -1
-relshift x = error ("Invalid char " ++ [x])
+apply x '(' = x+1
+apply x ')' = x-1
+apply x y = error $ "Unexpected char " ++ [y]
 
 -- Part 1
-end_lvl xs = foldl (\x y-> x + (relshift y)) 0 xs
+end_lvl xs = foldl apply 0 xs
 
 -- Part 2
-basement_index xs = findIndex (== -1) (scanl (\x y-> x + (relshift y)) 0 xs)
+basement_index xs = findIndex (== -1) (scanl apply 0 xs)
 
 
 main = do
