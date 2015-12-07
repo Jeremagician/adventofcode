@@ -1,5 +1,6 @@
 module Main where
 import System.Environment
+import Data.List
 
 relshift :: Char -> Int
 relshift '(' = 1
@@ -10,11 +11,8 @@ relshift x = error ("Invalid char " ++ [x])
 end_lvl xs = foldl (\x y-> x + (relshift y)) 0 xs
 
 -- Part 2
-basement_index xs = findBasement 0 1 xs
-  where findBasement _ _ [] = error "Santa never goes to the basement!"
-        findBasement start idx (h:t) =
-          let newlvl = start + (relshift h)
-          in if newlvl == (-1) then idx else findBasement newlvl (idx + 1) t
+basement_index xs = findIndex (== -1) (scanl (\x y-> x + (relshift y)) 0 xs)
+
 
 main = do
   args <- getArgs
