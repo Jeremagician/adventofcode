@@ -3,7 +3,6 @@ import Data.Char
 import System.Environment
 import Text.ParserCombinators.Parsec
 import Numeric
-import Data.List.Utils
 
 escaped_char = (char 'x' *> (chr . fst . head . readHex <$> count 2 hexDigit))
                <|> (oneOf "\"\\")
