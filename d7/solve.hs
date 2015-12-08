@@ -6,8 +6,6 @@ import Data.List
 import Data.List.Utils
 import Text.ParserCombinators.Parsec
 
-import Debug.Trace
-
 data Signal = Val Word16
             | Wire String
             | Unop (Word16 -> Word16) Signal
