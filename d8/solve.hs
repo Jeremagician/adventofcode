@@ -1,9 +1,9 @@
 module Main where
 import Data.Char
-import Data.Hex
 import System.Environment
 import Text.ParserCombinators.Parsec
 import Numeric
+import Data.List.Utils
 
 escaped_char = (char 'x' *> (chr . fst . head . readHex <$> count 2 hexDigit))
                <|> (oneOf "\"\\")
@@ -17,5 +17,7 @@ diff str mem = sum $ zipWith (-) (map length str) (map length mem)
 main = do
   args <- getArgs
   content <- readFile (args !! 0)
+  putStrLn (show (lines content))
   let res = parse catalog "" content
-  putStrLn (show $ fmap (diff (lines content)) res)
+  putStrLn $ "Part 1: " ++ (show $ fmap (diff (lines content)) res)
+  putStrLn $ "Part 2: " ++ (show $ diff (map show (lines content)) (lines content))
