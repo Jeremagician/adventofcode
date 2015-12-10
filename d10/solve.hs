@@ -7,7 +7,7 @@ look_and_say (x:xs) = (show (1 + length same)) ++ [x] ++ look_and_say rest
   where (same, rest) = span (==x) xs
 
 all_look_and_say start = start:[look_and_say x | x <- (all_look_and_say start)]
-len_at start idx = length $ last $ take idx $ tail $ all_look_and_say start
+len_at start idx = length $ all_look_and_say start !! idx
 
 main = do
   args <- getArgs
