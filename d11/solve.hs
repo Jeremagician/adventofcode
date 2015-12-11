@@ -25,7 +25,7 @@ valid_pass x = and $ map (\pred -> pred x) [has_two_pair, no_forbidden, three_su
 
 main = do
   args <- getArgs
-  let next_passwds = (args !! 0):[next x | x <- next_passwds]
+  let next_passwds = iterate next (args !! 0)
   let valids = filter valid_pass next_passwds
   putStrLn $ "Part 1 " ++ (show $ valids !! 0)
   putStrLn $ "Part 2 " ++ (show $ valids !! 1)
