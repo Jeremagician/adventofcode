@@ -8,11 +8,11 @@ import Data.Tuple
 -- ... WORKING ON IT
 
 parse_lines :: String -> ((String, String), Int)
-parse_lines ln = case (words (init ln)) of
+parse_lines ln = case words $ filter (/='.') ln of
   [x, "would", act, amnt, "happiness", "units",
    "by", "sitting", "next", "to", y]
     -> ((x, y), (if act == "gain" then 1 else -1) * (read amnt))
-  _ -> undefined
+  _ -> error ("Error invalid input: \"" ++ ln ++ "\"")
 
 parse :: String -> [((String, String), Int)]
 parse = map parse_lines . lines
